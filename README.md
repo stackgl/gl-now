@@ -59,6 +59,11 @@ shell.on("gl-render", function(t) {
 })
 ```
 
+Result:
+
+<img src="screenshot.png">
+
+
 ## Install
 
     npm install gl-now
