@@ -6,6 +6,8 @@ This module is an extension of [game-shell](https://github.com/mikolalysenko/gam
 
 ## Example
 
+[Try this demo in your browser](http://mikolalysenko.github.io/gl-now/)
+
 ```javascript
 //Initialize shell
 var shell = require("gl-now")()
@@ -61,7 +63,7 @@ shell.on("gl-render", function(t) {
 
 Result:
 
-<img src="screenshot.png">
+<img src="https://raw.github.com/mikolalysenko/gl-now/master/screenshot.png">
 
 
 ## Install
