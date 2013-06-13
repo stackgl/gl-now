@@ -17,7 +17,7 @@ function createGLShell(options) {
   //First create shell
   var shell = makeGameShell(options)
 
-  shell.on("init", function() {
+  shell.on("init", function initGLNow() {
   
     //Create canvas
     var canvas = document.createElement("canvas")
@@ -69,7 +69,7 @@ function createGLShell(options) {
     shell.element.addEventListener("DOMSubtreeModified", handleResize)
     window.addEventListener("resize", handleResize)
 
-    shell.on("render", function glRender(t) {
+    shell.on("render", function renderGLNow(t) {
     
       //Bind default framebuffer
       gl.bindFramebuffer(gl.FRAMEBUFFER, null)
