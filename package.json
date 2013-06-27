@@ -1,6 +1,6 @@
 {
   "name": "gl-now",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Create a WebGL context now!",
   "main": "index.js",
   "directories": {
