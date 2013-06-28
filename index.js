@@ -1,15 +1,6 @@
 "use strict"
 
-var color = require("color")
 var makeGameShell = require("game-shell")
-
-function parseColor(str) {
-  if(!str || str === "") {
-    return null
-  }
-  var c = color(str)
-  return [ c.values.rgb[0], c.values.rgb[1], c.values.rgb[2], c.alpha ]
-}
 
 function createGLShell(options) {
   options = options || {}
@@ -50,7 +41,7 @@ function createGLShell(options) {
     
     //Load default parameters
     shell.clearFlags = options.clearFlags === undefined ? (gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT) : options.clearFlags
-    shell.clearColor = options.clearColor || parseColor(shell.element.style["background-color"]) || [0.2, 0.4, 0.8, 1.0]
+    shell.clearColor = options.clearColor || [0.2, 0.4, 0.8, 1.0]
     shell.clearDepth = options.clearDepth || 1.0
     shell.clearStencil = options.clearStencil || 0
     
