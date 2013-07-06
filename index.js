@@ -57,7 +57,16 @@ function createGLShell(options) {
         shell.emit("resize", width, height)
       }
     }
-    shell.element.addEventListener("DOMSubtreeModified", handleResize)
+    
+    if(typeof MutationObserver !== "undefined") {
+      var observer = new MutationObserver(handleResize)
+      observer.observe(shell.element, {
+        attributes: true,
+        subtree: true
+      })
+    } else {
+      shell.element.addEventListener("DOMSubtreeModified", handleResize)
+    }
     window.addEventListener("resize", handleResize)
 
     shell.on("render", function renderGLNow(t) {

@@ -72,7 +72,7 @@ Result:
     
 # API
 
-## `var shell = require("gl-now")([options])`
+### `var shell = require("gl-now")([options])`
 
 Options is an object that takes the same fields as in [game-shell](https://github.com/mikolalysenko/game-shell#var-shell--requiregame-shelloptions) with the following additions:
 
