@@ -59,6 +59,10 @@ shell.on("gl-render", function(t) {
   //Draw arrays
   gl.drawArrays(gl.TRIANGLES, 0, 3)
 })
+
+shell.on("gl-error", function(e) {
+  throw new Error("WebGL not supported :(")
+})
 ```
 
 Result:
@@ -80,7 +84,7 @@ Options is an object that takes the same fields as in [game-shell](https://githu
 * `clearColor` a length 4 array representing background clear color.  (Defaults to element's background-color or else `[0.2, 0.4, 0.8, 1.0]`
 * `clearDepth` value to clear depth buffer to (Defaults to `1.0`)
 * `clearStencil` value to clear stencil buffer to (Defaults to `0`)
-
+* `extensions` a list of necessary WebGL extensions to support.  Vendor prefix optional.  You can access these extensions later using [webglew](https://npmjs.org/package/webglew)
 
 ## Events
 
@@ -91,6 +95,9 @@ Called once the WebGL context is initialized
 
 ### `gl-render([frame_time])`
 Called at the start of the WebGL frame.
+
+### `gl-error(reason)`
+Called if there was an error initializing webgl
 
 ### `resize(width, height)`
 Called when the WebGL window is resized

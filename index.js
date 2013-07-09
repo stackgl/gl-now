@@ -1,9 +1,12 @@
 "use strict"
 
 var makeGameShell = require("game-shell")
+var webglew = require("webglew")
 
 function createGLShell(options) {
   options = options || {}
+  
+  var extensions = options.extensions || []
 
   //First create shell
   var shell = makeGameShell(options)
@@ -12,6 +15,24 @@ function createGLShell(options) {
   
     //Create canvas
     var canvas = document.createElement("canvas")
+    
+    //Try initializing WebGL
+    var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
+    if(!gl) {
+      shell.emit("gl-error", new Error("Unable to initialize WebGL"))
+      return
+    }
+    
+    //Check extensions
+    var ext = webglew(gl)
+    for(var i=0; i<extensions.length; ++i) {
+      if(!(extensions[i] in ext)) {
+        shell.emit("gl-error", new Error("Missing extension: " + extensions[i]))
+        return
+      }
+    }
+
+    //Set canvas style
     canvas.style.position = "absolute"
     canvas.style.left = "0px"
     canvas.style.top = "0px"
@@ -20,12 +41,6 @@ function createGLShell(options) {
     //Load width/height
     canvas.width = shell.width
     canvas.height = shell.height
-    
-    //Try initializing WebGL
-    var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
-    if(!gl) {
-      throw new Error("Unable to initialize WebGL")
-    }
     
     //Add variables to game-shell
     shell.canvas = canvas
