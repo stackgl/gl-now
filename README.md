@@ -123,5 +123,10 @@ The width of the gl context
 
 The height of the context
 
+### `shell.scale`
+
+The scale of the context, which defaults to 1. Set it to higher values for
+a smaller viewport and faster rendering at the expense of quality.
+
 # Credits
 (c) 2013 Mikola Lysenko. MIT License
