@@ -1,6 +1,6 @@
 {
   "name": "gl-now",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create a WebGL context now!",
   "main": "index.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "game-shell": "~1.0.0",
-    "webglew": "~0.0.0"
+    "webglew": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
