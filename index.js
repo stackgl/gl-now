@@ -10,6 +10,7 @@ function createGLShell(options) {
 
   //First create shell
   var shell = makeGameShell(options)
+  var scale = shell.scale || 1
 
   shell.on("init", function initGLNow() {
   
@@ -38,24 +39,20 @@ function createGLShell(options) {
     canvas.style.top = "0px"
     shell.element.appendChild(canvas)
 
-    //Load width/height
-    canvas.width = shell.width
-    canvas.height = shell.height
-    
     //Add variables to game-shell
     shell.canvas = canvas
     shell.gl = gl
-    
+
+    //Load width/height
+    resize()
+
     //Load default parameters
     shell.clearFlags = options.clearFlags === undefined ? (gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT) : options.clearFlags
     shell.clearColor = options.clearColor || [0.2, 0.4, 0.8, 1.0]
     shell.clearDepth = options.clearDepth || 1.0
     shell.clearStencil = options.clearStencil || 0
-    
-    shell.on("resize", function(w, h) {
-      canvas.width = w
-      canvas.height = h
-    })
+
+    shell.on("resize", resize)
 
     //Hook render event
     shell.on("render", function renderGLNow(t) {
@@ -64,8 +61,8 @@ function createGLShell(options) {
       gl.bindFramebuffer(gl.FRAMEBUFFER, null)
       
       //Set viewport
-      gl.viewport(0, 0, shell.width, shell.height)
-      
+      gl.viewport(0, 0, shell.width / scale, shell.height / scale)
+
       //Clear buffers
       if(shell.clearFlags & gl.STENCIL_BUFFER_BIT) {
         gl.clearStencil(shell.clearStencil)
@@ -87,7 +84,25 @@ function createGLShell(options) {
     //WebGL initialized
     shell.emit("gl-init")
   })
-  
+
+  function resize() {
+    shell.canvas.width = shell.width / scale
+    shell.canvas.height = shell.height / scale
+    shell.canvas.style.width = shell.width + 'px'
+    shell.canvas.style.height = shell.height + 'px'
+  }
+
+  Object.defineProperty(shell, 'scale', {
+    get: function() {
+      return scale
+    },
+    set: function(_scale) {
+      if (scale === _scale) return
+      scale = _scale
+      resize()
+    }
+  })
+
   return shell
 }
 
