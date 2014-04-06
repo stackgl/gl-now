@@ -34,8 +34,6 @@ shell.on("gl-init", function() {
     0, -1, 0,
     1, 1, 0
   ]), gl.STATIC_DRAW)
-
-  shell.scale = 1.0
   
   //Set up attribute pointer
   var position_attribute = gl.getAttribLocation(shader, "position")
@@ -45,8 +43,6 @@ shell.on("gl-init", function() {
 
 shell.on("gl-render", function(t) {
   var gl = shell.gl
-
-  console.log(shell.width, shell.height)
 
   //Draw arrays
   gl.drawArrays(gl.TRIANGLES, 0, 3)

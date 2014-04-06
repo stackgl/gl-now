@@ -122,6 +122,18 @@ function createGLShell(options) {
     }
   })
 
+  Object.defineProperty(shell, "mouse", {
+    get: function() {
+      return [shell.mouseX/scale, shell.mouseY/scale]
+    }
+  })
+
+  Object.defineProperty(shell, "prevMouse", {
+    get: function() {
+      return [shell.prevMouseX/scale, shell.prevMouseY/scale]
+    }
+  })
+
   return shell
 }
 
