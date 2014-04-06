@@ -61,7 +61,7 @@ function createGLShell(options) {
       gl.bindFramebuffer(gl.FRAMEBUFFER, null)
       
       //Set viewport
-      gl.viewport(0, 0, shell.width / scale, shell.height / scale)
+      gl.viewport(0, 0, (shell._width / scale)|0, (shell._height / scale)|0)
 
       //Clear buffers
       if(shell.clearFlags & gl.STENCIL_BUFFER_BIT) {
@@ -85,11 +85,13 @@ function createGLShell(options) {
     shell.emit("gl-init")
   })
 
+
+
   function resize() {
-    shell.canvas.width = shell.width / scale
-    shell.canvas.height = shell.height / scale
-    shell.canvas.style.width = shell.width + 'px'
-    shell.canvas.style.height = shell.height + 'px'
+    shell.canvas.width = (shell._width / scale)|0
+    shell.canvas.height = (shell._height / scale)|0
+    shell.canvas.style.width = shell._width + 'px'
+    shell.canvas.style.height = shell._height + 'px'
   }
 
   Object.defineProperty(shell, 'scale', {
@@ -97,9 +99,25 @@ function createGLShell(options) {
       return scale
     },
     set: function(_scale) {
-      if (scale === _scale) return
+      _scale = +_scale
+      if((_scale <= 0) || isNaN(_scale) || (scale === _scale)) {
+        return scale
+      }
       scale = _scale
       resize()
+      return scale
+    }
+  })
+
+  Object.defineProperty(shell, "width", {
+    get: function() {
+      return (shell._width / scale)|0
+    }
+  })
+
+  Object.defineProperty(shell, "height", {
+    get: function() {
+      return (shell._height / scale)|0
     }
   })
 
