@@ -99,7 +99,7 @@ Called at the start of the WebGL frame.
 ### `gl-error(reason)`
 Called if there was an error initializing webgl
 
-### `resize(width, height)`
+### `gl-resize(width, height)`
 Called when the WebGL window is resized
 
 

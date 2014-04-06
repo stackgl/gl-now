@@ -85,13 +85,14 @@ function createGLShell(options) {
     shell.emit("gl-init")
   })
 
-
-
   function resize() {
-    shell.canvas.width = (shell._width / scale)|0
-    shell.canvas.height = (shell._height / scale)|0
+    var nw = (shell._width/scale)|0
+    var nh = (shell._height/scale)|0
+    shell.canvas.width = nw
+    shell.canvas.height = nh
     shell.canvas.style.width = shell._width + 'px'
     shell.canvas.style.height = shell._height + 'px'
+    shell.emit("gl-resize", nw, nh)
   }
 
   Object.defineProperty(shell, 'scale', {
