@@ -128,5 +128,11 @@ The height of the context
 The scale of the context, which defaults to 1. Set it to higher values for
 a smaller viewport and faster rendering at the expense of quality.
 
+### `shell.mouse`
+A length 2 vector giving the current coordinate of the mouse on the screen
+
+### `shell.prevMouse`
+A length 2 vector giving the previous coordinate of the mouse on the screen
+
 # Credits
 (c) 2013 Mikola Lysenko. MIT License
