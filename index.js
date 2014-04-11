@@ -48,7 +48,7 @@ function createGLShell(options) {
 
     //Load default parameters
     shell.clearFlags = options.clearFlags === undefined ? (gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT) : options.clearFlags
-    shell.clearColor = options.clearColor || [0.2, 0.4, 0.8, 1.0]
+    shell.clearColor = options.clearColor || [0,0,0,0]
     shell.clearDepth = options.clearDepth || 1.0
     shell.clearStencil = options.clearStencil || 0
 
