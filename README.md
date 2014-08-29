@@ -85,6 +85,7 @@ Options is an object that takes the same fields as in [game-shell](https://githu
 * `clearDepth` value to clear depth buffer to (Defaults to `1.0`)
 * `clearStencil` value to clear stencil buffer to (Defaults to `0`)
 * `extensions` a list of necessary WebGL extensions to support.  Vendor prefix optional.  You can access these extensions later using [webglew](https://npmjs.org/package/webglew)
+* `glOptions` on object containing a set of parameters which are passed to the webgl context directly.
 
 ## Events
 

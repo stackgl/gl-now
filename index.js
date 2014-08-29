@@ -11,6 +11,7 @@ function createGLShell(options) {
   //First create shell
   var shell = makeGameShell(options)
   var scale = shell.scale || 1
+  var contextOptions = options.glOptions
 
   shell.on("init", function initGLNow() {
   
@@ -18,7 +19,8 @@ function createGLShell(options) {
     var canvas = document.createElement("canvas")
     
     //Try initializing WebGL
-    var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
+    var gl = canvas.getContext("webgl", contextOptions) || 
+             canvas.getContext("experimental-webgl", contextOptions)
     if(!gl) {
       shell.emit("gl-error", new Error("Unable to initialize WebGL"))
       return
